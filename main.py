@@ -110,7 +110,7 @@ def evaluations(name, container):
 	log_list.append(name)
 
 	# Set the CoevoOponents value
-	CoevoOpponents = math.floor(container.mu + container.generations - 1)
+	CoevoOpponents = math.floor((container.mu + container.generations - 1) * container.CoevolutionaryFitnessSamplePercent)
 
 	# Create the memory list for the current run
 	for num in range(0, container.k):
