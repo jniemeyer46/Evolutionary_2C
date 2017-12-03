@@ -33,8 +33,8 @@ def main():
 	# initial formatting of the result log with Result Log at the top and the parameters underneath that
 	result_log.write("Result Log \n")
 	result_log.write("Random Seed = %s \n" % container.seed)
-	result_log.write("Parameters used = {'k': %s, 'd': %s, 'l': %s, 'n': %s, 'mu': %s, 'lambda': %s, 'p': %s, 'fitness evaluations': %s, 'number of runs': %s, 'problem solution location': '%s'}\n\n"
-					% (container.k, container.d, container.l, container.n, container.mu, container.generations, container.p, container.fitness, container.runs, container.prob_solution_file))
+	result_log.write("Parameters used = {'k': %s, 'd': %s, 'l': %s, 'n': %s, 'mu': %s, 'lambda': %s, 'p': %s, 'CoevolutionaryFitnessSamplePercent': %s, 'fitness evaluations': %s, 'number of runs': %s, 'problem solution location': '%s'}\n\n"
+					% (container.k, container.d, container.l, container.n, container.mu, container.generations, container.p, container.CoevolutionaryFitnessSamplePercent, container.fitness, container.runs, container.prob_solution_file))
 	result_log.write(str(2000) + "\n")
 
 
@@ -298,7 +298,7 @@ def evaluations(name, container):
 			average, best = fitnessTuple
 
 			Average_Composite_Fitness += average
-			Average_Composite_Fitness = ((Average_Composite_Fitness + previousAverage) / len(fitnessList) + 1)
+			Average_Composite_Fitness = ((Average_Composite_Fitness + previousAverage) / (len(fitnessList) + 1))
 
 			previousAverage = Average_Composite_Fitness
 

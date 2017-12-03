@@ -5,7 +5,7 @@ k = 5
 d = 10
 l = 30
 n = 5
-mu = 0.1
+mu = 0.03
 lambda = 3
 parentNumber = 15
 p = 1
@@ -25,12 +25,12 @@ Recombination: subTree_Crossover_Recombination = 1
 
 Mutation: subTree_Crossover_Mutation = 1
 
-survivalSelectionStrategy: Plus = 1, comma = 0
+survivalSelectionStrategy: Plus = 0, comma = 1
 
-survivalSelection: Truncation = 1, kTournament = 0
+survivalSelection: Truncation = 0, kTournament = 1
 
 bloatControl: parsimonyPressure = 1
 
-Termination: numEvals = 1, noChange = 0
+Termination: numEvals = 0, noChange = 1
 
 newSeed = 1
