@@ -36,7 +36,12 @@
 \begin{document}
 \maketitle
 
+\section*{\begin{center}MOEA Explained\end{center}}
+
+For this experiment I decided to go with a fairly simple approach for my CoEA.  So I have a configurable variable called CoevolutionaryFitnessSamplePercent that can be set to any percent a user likes, this variable should be in the form of \% (so 100 would be what it would be set at for 100\%), it will get converted into a percentage during the execution of the program automatically.  Once I had that variable all that was left was to get the number of opponents each bracket would have.  In order to do that I simply make a variable that was set to the formula $(\mu + \lambda - 1) * CoevolutionaryFitnessSamplePercent$ in order to obtain the number of opponents for that experiment.1
+
 \section*{\begin{center} Experiment parameters and graphs \end{center}}
+
 \section{IPD Results}
 
 \subsection{Graphs}
