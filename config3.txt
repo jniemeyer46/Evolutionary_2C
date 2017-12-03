@@ -25,7 +25,7 @@ Recombination: subTree_Crossover_Recombination = 1
 
 Mutation: subTree_Crossover_Mutation = 1
 
-survivalSelectionStrategy: Plus = 0, comma = 1
+survivalSelectionStrategy: Plus = 1, comma = 0
 
 survivalSelection: Truncation = 0, kTournament = 1
 
