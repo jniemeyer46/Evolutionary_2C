@@ -1,7 +1,7 @@
 \documentclass[•]{article}
 \usepackage{graphicx}
 \usepackage{listings}
-\graphicspath{ {/Users/jjniemeyer46/Desktop/Pics/EC_2b} }
+\graphicspath{ {/Users/jjniemeyer46/Desktop/Pics/EC_2c} }
 
 \usepackage{color}
  
@@ -38,28 +38,16 @@
 
 \section*{\begin{center}MOEA Explained\end{center}}
 
-For this experiment I decided to go with a fairly simple approach for my CoEA.  So I have a configurable variable called CoevolutionaryFitnessSamplePercent that can be set to any percent a user likes, this variable should be in the form of \% (so 100 would be what it would be set at for 100\%), it will get converted into a percentage during the execution of the program automatically.  Once I had that variable all that was left was to get the number of opponents each bracket would have.  In order to do that I simply make a variable that was set to the formula $(\mu + \lambda - 1) * CoevolutionaryFitnessSamplePercent$ in order to obtain the number of opponents for that experiment.1
+For this experiment I decided to go with a fairly simple approach for my CoEA.  So I have a configurable variable called CoevolutionaryFitnessSamplePercent that can be set to any percent a user likes, this variable should be in the form of \% (so 100 would be what it would be set at for 100\%), it will get converted into a percentage during the execution of the program automatically.  Once I had that variable all that was left was to get the number of opponents each bracket would have.  In order to do that I simply make a variable that gets set to the formula $(\mu + \lambda - 1) * CoevolutionaryFitnessSamplePercent$ in order to obtain the number of opponents for that experiment.  After getting that value all we have left to do have the program finish multiple evaluations for each bracket of the experiment, take the final fitness values and see which is the Best Composite Fitness out of the bracket as well as finding the Average Composite Fitness of the bracket.  To do all of this we simply get the highest fitness value of the bracket and that becomes the Best Composite Fitness Value, we also take all of the fitness values, add them up, and divide by the number of opponents fighting in that round to obtain the Average Composite Fitness value.  After that we are pretty much finished with the CoEA, it will compare multiple evaluations at a time in a very simple and straightforward way.
 
+\pagebreak
 \section*{\begin{center} Experiment parameters and graphs \end{center}}
 
-\section{IPD Results}
+\section{IPD Results Using Configuration 1}
 
-\subsection{Graphs}
-\noindent \includegraphics [scale=0.65] {/graph}
-
-\pagebreak
-\subsection{Result Tables}
-Problem 1a: final results\\\\
-\noindent \includegraphics [scale=0.65] {/results}
-
-\pagebreak
-\subsection{Statistical Analysis}
-\noindent \includegraphics [scale=0.65] {/statistical_analysis}\\\\
-\indent So according to the statistical analysis (shown above) the p-value for the best fitness is not low enough to say that the results are statistically significant.  That means that the t-value of -0.18387, computed using the tables given, were not far enough apart from the t-value given of 2.045 to make the difference in the fitness values statistically significant.
-
-\pagebreak
-\subsection{EA Configurations}
-If you want to get the same results you have to change the newSeed variable to 0 (Zero) in the configuration file in order to use the previous seed.\\\\
+\subsection{EA Experimental Setup for Configuration 1}
+\indent \indent In order to recreate this Experiment all that needs to be done is set the configuration file variables to the following values.  In order to change each experiment I decided to use different percentages for the CoevoluationaryFitnessSamplePercent.  The reason I did this was to change the number of opponents in each bracket which in turn creates entirely different calculations for the Average Composite Fitness.  I also increased random variables to see if the results of the experiment differed by much or if they were fairly close together.  The Best Composite Fitness seems to stay the same (Pretty much always sitting at 5), however the Average Composite Fitness does seem to change quite a lot depending on the parameters set up.\\
+\indent \textbf{NOTE:} If you want to get the same results you have to change the newSeed variable to 0 (Zero) in the configuration file in order to use the previous seed.\\
 
 Using config1.txt 
 \begin{lstlisting}
@@ -71,14 +59,76 @@ d = 10
 l = 30
 n = 5
 mu = 0.01
-lambda = 2
-parentNumber = 5
+lambda = 5
+parentNumber = 10
 p = 1
 terminationEvals = 3
+CoevolutionaryFitnessSamplePercent = 100
 
 
 prob_log_file = logs/log1.txt
 prob_solution_file = solutions/solution1.txt
+
+
+Initialize: Ramped_halfandhalf = 1
+
+parentSelection: Fitness_Proportional_Selection = 0, Over_Selection = 1
+
+Recombination: subTree_Crossover_Recombination = 1
+
+Mutation: subTree_Crossover_Mutation = 1
+
+survivalSelectionStrategy: Plus = 0, comma = 1
+
+survivalSelection: Truncation = 1, kTournament = 0
+
+bloatControl: parsimonyPressure = 1
+
+Termination: numEvals = 1, noChange = 0
+
+newSeed = 1
+\end{lstlisting}
+
+\subsection{Graphs}
+%\noindent \includegraphics [scale=0.65] {/graph1}
+
+\pagebreak
+\subsection{Result Tables}
+Problem 1a: final results\\\\
+%\noindent \includegraphics [scale=0.65] {/results}
+
+\pagebreak
+\subsection{Statistical Analysis}
+%\noindent \includegraphics [scale=0.65] {/statistical_analysis}\\\\
+\indent So according to the statistical analysis (shown above) the p-value for the best fitness is not low enough to say that the results are statistically significant.  That means that the t-value of -0.18387, computed using the tables given, were not far enough apart from the t-value given of 2.045 to make the difference in the fitness values statistically significant.
+
+
+\pagebreak
+\section{IPD Results Using Configuration 2}
+
+\subsection{EA Experimental Setup for Configuration 2}
+\indent \indent In order to recreate this Experiment all that needs to be done is set the configuration file variables to the following values.  In order to change each experiment I decided to use different percentages for the CoevoluationaryFitnessSamplePercent.  The reason I did this was to change the number of opponents in each bracket which in turn creates entirely different calculations for the Average Composite Fitness.  I also increased random variables to see if the results of the experiment differed by much or if they were fairly close together.  The Best Composite Fitness seems to stay the same (Pretty much always sitting at 5), however the Average Composite Fitness does seem to change quite a lot depending on the parameters set up.\\
+\indent \textbf{NOTE:} If you want to get the same results you have to change the newSeed variable to 0 (Zero) in the configuration file in order to use the previous seed.\\
+
+Using config2.txt 
+\begin{lstlisting}
+runs = 30
+fitness = 10000
+
+k = 5
+d = 10
+l = 30
+n = 5
+mu = 0.05
+lambda = 5
+parentNumber = 20
+p = 1
+terminationEvals = 3
+CoevolutionaryFitnessSamplePercent = 50
+
+
+prob_log_file = logs/log2.txt
+prob_solution_file = solutions/solution2.txt
 
 
 Initialize: Ramped_halfandhalf = 1
@@ -89,13 +139,99 @@ Recombination: subTree_Crossover_Recombination = 1
 
 Mutation: subTree_Crossover_Mutation = 1
 
-survivalSelection: Truncation = 1, kTournament = 0
+survivalSelectionStrategy: Plus = 0, comma = 1
+
+survivalSelection: Truncation = 0, kTournament = 1
 
 bloatControl: parsimonyPressure = 1
 
-Termination: numEvals = 1, noChange = 0
+Termination: numEvals = 0, noChange = 1
 
 newSeed = 1
 \end{lstlisting}
+
+\subsection{Graphs}
+\noindent \includegraphics [scale=0.65] {/graph2}
+
+\pagebreak
+\subsection{Result Tables}
+Problem 1a: final results\\\\
+%\noindent \includegraphics [scale=0.65] {/results}
+
+\pagebreak
+\subsection{Statistical Analysis}
+%\noindent \includegraphics [scale=0.65] {/statistical_analysis}\\\\
+\indent So according to the statistical analysis (shown above) the p-value for the best fitness is not low enough to say that the results are statistically significant.  That means that the t-value of -0.18387, computed using the tables given, were not far enough apart from the t-value given of 2.045 to make the difference in the fitness values statistically significant.
+
+
+\pagebreak
+\section{IPD Results Using Configuration 3}
+
+\subsection{EA Experimental Setup for Configuration 3}
+\indent \indent In order to recreate this Experiment all that needs to be done is set the configuration file variables to the following values.  In order to change each experiment I decided to use different percentages for the CoevoluationaryFitnessSamplePercent.  The reason I did this was to change the number of opponents in each bracket which in turn creates entirely different calculations for the Average Composite Fitness.  I also increased random variables to see if the results of the experiment differed by much or if they were fairly close together.  The Best Composite Fitness seems to stay the same (Pretty much always sitting at 5), however the Average Composite Fitness does seem to change quite a lot depending on the parameters set up.\\
+\indent \textbf{NOTE:} If you want to get the same results you have to change the newSeed variable to 0 (Zero) in the configuration file in order to use the previous seed.\\
+
+Using config3.txt 
+\begin{lstlisting}
+runs = 30
+fitness = 10000
+
+k = 5
+d = 10
+l = 30
+n = 5
+mu = 0.03
+lambda = 3
+parentNumber = 15
+p = 1
+terminationEvals = 3
+CoevolutionaryFitnessSamplePercent = 25
+
+
+prob_log_file = logs/log3.txt
+prob_solution_file = solutions/solution3.txt
+
+
+Initialize: Ramped_halfandhalf = 1
+
+parentSelection: Fitness_Proportional_Selection = 1, Over_Selection = 0
+
+Recombination: subTree_Crossover_Recombination = 1
+
+Mutation: subTree_Crossover_Mutation = 1
+
+survivalSelectionStrategy: Plus = 1, comma = 0
+
+survivalSelection: Truncation = 0, kTournament = 1
+
+bloatControl: parsimonyPressure = 1
+
+Termination: numEvals = 0, noChange = 1
+
+newSeed = 1
+\end{lstlisting}
+
+\subsection{Graphs}
+\noindent \includegraphics [scale=0.65] {/graph3}
+
+\pagebreak
+\subsection{Result Tables}
+Problem 1a: final results\\\\
+%\noindent \includegraphics [scale=0.65] {/results}
+
+\pagebreak
+\subsection{Statistical Analysis}
+%\noindent \includegraphics [scale=0.65] {/statistical_analysis}\\\\
+\indent So according to the statistical analysis (shown above) the p-value for the best fitness is not low enough to say that the results are statistically significant.  That means that the t-value of -0.18387, computed using the tables given, were not far enough apart from the t-value given of 2.045 to make the difference in the fitness values statistically significant.
+
+\pagebreak
+\section{Discussion Section}
+\indent \indent So for the most part I expected the results I obtained in the end of this experiment.  I figured that the Best Composite Fitness would end up being 5, and I knew the Absolute Fitness would be 5.  I will say that I did not expect the Average Composite Fitness to fluctuate so much between the three experiments, I also kind of expected the Average Composite Fitness to be closer to 3.  
+
+After finishing the experiments I believe that I can say giving the experiments a larger parent population help improve the Average Composite Fitness because there is a larger chance of getting higher fitness offspring the more children there are to choose from, meaning that it is easier to get out of a local Maximum because there are more recombination and mutation options to choose from.
+
+\pagebreak
+\section{Conclusion}
+\indent \indent After all is said and done I would say this was a successful experiment, while I am unsure whether the values I got were appropriate or not I cannot say fully, however I do know that obtaining a final value for the Best Composite Fitness most of the time should be correct, and I know the Absolute Value of 5 is correct.  I was a little surprised when it came to the Average Composite fitness however, I expected the average to be closer to 3 for all of the exeriments, I also expected the averages between the 3 experiments to be closer together.  It turns out that the changes I made to the configurations did impact the results quite a bit.  Those are the main findings that surprised me from this experiment overall.
 
 \end{document}
